@@ -21,3 +21,11 @@ x = 2
 print(x == 2 and x != 1)
 print(x==3 or x==2)
 
+count = 0 
+count = count + 1 
+count += 1
+print(count)
+
+for x in range(10):
+    count += 1
+print(count)
