@@ -4,8 +4,11 @@ single_quote_string = 'Hello'
 apostrophe_string = "I'm a string"
 
 print(int_var)
+
 print(float_var)
+
 print(single_quote_string)
+
 print(apostrophe_string)
 
 print(7 // 3)
@@ -14,7 +17,7 @@ print(7 % 3)
 
 print(2 ** 3)
 
-print(9**(1/2))
+print(9 ** (1/2))
 
 string_var = "0123456789"
 
