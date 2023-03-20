@@ -1,66 +1,83 @@
-def create_board():
-    board = []
-    for i in range(3):
-        row = [""] * 3
-        board.append(row)
-    return board
-def print_board(board):
-    for row in board:
-        print("|".join(row))
-def get_move(player):
-    print(f"Player {player}, enter your move (row, column): ")
-    while True:
-        try:
-            row, col = input().split(",")
-            row = int(row.strip()) - 1
-            col = int(col.strip()) - 1
-            if row < 0 or row > 2 or col < 0 or col > 2:
-                print("Invalid move. Row and column must be between 1 and 3.")
-            elif board[row][col] != "":
-                print("That space is already taken. Choose another.")
-            else:
-                return row, col
-        except ValueError:
-            print("Invalid input. Enter two integers separated by a comma (e.g., 1,2).")
-def play_game():
-    board = create_board()
-    player = "X"
-    while True:
-        print_board(board)
-        row, col = get_move(player)
-        board[row][col] = player
-        winner = check_winner(board)
-        if winner:
-            print_board(board)
-            print(f"Player {player} wins!")
+import numpy as np
+import math
+
+# Define the Hill cipher encryption and decryption functions
+def encrypt(message, key):
+    # Convert the message to uppercase
+    message = message.upper()
+    # Calculate the size of the square matrix
+    n = int(math.sqrt(len(key)))
+    # Reshape the key into a square matrix
+    key_matrix = np.reshape(np.array(list(key)), (n, n))
+    # Create a list to hold the numerical values of the message
+    message_nums = []
+    # Convert the message to numerical values
+    for letter in message:
+        message_nums.append(ord(letter) - 65)
+    # Reshape the message into a matrix
+    message_matrix = np.reshape(np.array(message_nums), (-1, n))
+    # Add padding to the message if necessary
+    if len(message) % n != 0:
+        message_matrix = np.pad(message_matrix, ((0, n - len(message) % n), (0, 0)), mode='constant', constant_values=0)
+    # Multiply the key matrix by the message matrix
+    result_matrix = np.matmul(key_matrix, message_matrix) % 26
+    # Convert the result matrix to a string
+    result = ''
+    for row in result_matrix:
+        for num in row:
+            result += chr(num + 65)
+    return result
+
+def decrypt(ciphertext, key):
+    # Convert the ciphertext to uppercase
+    ciphertext = ciphertext.upper()
+    # Calculate the size of the square matrix
+    n = int(math.sqrt(len(key)))
+    # Reshape the key into a square matrix
+    key_matrix = np.reshape(np.array(list(key)), (n, n))
+    # Inverse the key matrix
+    key_matrix_inv = np.linalg.inv(key_matrix)
+    # Calculate the determinant of the key matrix
+    det = int(round(np.linalg.det(key_matrix)))
+    # Calculate the modular inverse of the determinant
+    det_inv = -1
+    for i in range(26):
+        if (det * i) % 26 == 1:
+            det_inv = i
             break
-        elif check_tie(board):
-            print_board(board)
-            print("Tie game!")
-            break
-        else:
-            player = "O" if player == "X" else "X"
-def check_winner(board):
-    # Check rows
-    for row in board:
-        if all(val == row[0] and val != "" for val in row):
-            return row[0]
-    # Check columns
-    for col in range(3):
-        if all(val == board[0][col] and val != "" for val in [board[0][col], board[1][col], board[2][col]]):
-            return board[0][col]
+    # Calculate the adjugate of the key matrix
+    adj = det * key_matrix_inv
+    adj = adj.round().astype(int) % 26
+    adj = np.transpose(adj)
+    # Create a list to hold the numerical values of the ciphertext
+    ciphertext_nums = []
+    # Convert the ciphertext to numerical values
+    for letter in ciphertext:
+        ciphertext_nums.append(ord(letter) - 65)
+    # Reshape the ciphertext into a matrix
+    ciphertext_matrix = np.reshape(np.array(ciphertext_nums), (-1, n))
+    # Multiply the adjugate matrix by the ciphertext matrix
+    result_matrix = np.matmul(adj, ciphertext_matrix) % 26
+    # Convert the result matrix to a string
+    result = ''
+    for row in result_matrix:
+        for num in row:
+            result += chr(num + 65)
+    return result
 
-    # Check diagonals
-    if all(val == board[0][0] and val != "" for val in [board[0][0], board[1][1], board[2][2]]):
-        return board[0][0]
-    if all(val == board[0][2] and val != "" for val in [board[0][2], board[1][1], board[2][0]]):
-        return board[0][2]
+# Ask the user if they want to encrypt or decrypt a message
+while True:
+    mode = input("Do you want to encrypt or decrypt a message? ")
+    if mode.lower() == 'encrypt' or mode.lower() == 'decrypt':
+        break
 
-    # No winner
-    return None
+# Ask the user for the message and key
+message = input("Enter the message: ")
+key = input("Enter the key: ")
 
-
-def check_tie(board):
-    return all(val != "" for row in board for val in row)
-
-play_game()
+# Encrypt or decrypt the message based on the user's choice
+if mode.lower() == 'encrypt':
+    ciphertext = encrypt(message, key)
+    print("The encrypted message is:", ciphertext)
+else:
+    pass
