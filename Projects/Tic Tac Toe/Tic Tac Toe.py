@@ -1,12 +1,26 @@
+# Set up the game loop to run until the game is over
+game_on = True
 
-Game = True
+
+# Function to check for a win or tie
 def check_win(spots, turn):
-    win = ("123", "456", "789", "159", "357", "147", "258", "369")
-    for i in range(7):
-        if (spots[int(win[i][0])] + spots[int(win[i][1])] + spots[int(win[i][2])]) == (turn * 3):
+    # Possible winning combinations
+    win_combos = ("123", "456", "789", "159", "357", "147", "258", "369")
+
+    # Check if any of the winning combinations have been played
+    for combo in win_combos:
+        if (spots[int(combo[0])] + spots[int(combo[1])] + spots[int(combo[2])]) == (turn * 3):
             print(f"{turn} Wins!!!")
-            global Game
-            Game = False
+            # Set the game state to not running
+            global game_on
+            game_on = False
+    if all(value != " " for value in spots.values()):
+        # If all spots are filled and no one has won, it's a tie
+        print(f"It's a Tie!!!")
+        game_on = False
+
+
+# Function to mark a spot on the board
 def mark(spots, turn):
     while True:
         selected_spot = input("Please pick a spot (1-9): ")
@@ -20,24 +34,40 @@ def mark(spots, turn):
         except ValueError:
             print("Please enter a valid number.")
 
+
+# Function to draw the game board
 def draw_board(spots):
     print(f"  {spots[1]}  || {spots[2]}  ||  {spots[3]}")
     print(f"=================")
     print(f"  {spots[4]}  || {spots[5]}  ||  {spots[6]}")
     print(f"=================")
     print(f"  {spots[7]}  || {spots[8]}  ||  {spots[9]}")
-"""    global Game
-    Game = False"""
+
+
+# Main game loop
 def main():
+    # Initialize the spots on the board to blank
     spots = {1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
     turn_count = 1
-    while Game:
+    while game_on:
+        # Draw the board
         draw_board(spots)
+
+        # Determine whose turn it is
         if (turn_count % 2) == 1:
             turn = "X"
         else:
             turn = "O"
+
+        # Mark a spot on the board
         mark(spots, turn)
+
+        # Check for a win or tie
         check_win(spots, turn)
+
+        # Increment the turn counter
         turn_count += 1
+
+
+# Start the game
 main()
