@@ -23,7 +23,7 @@ def check_win(spots, turn):
 # Function to mark a spot on the board
 def mark(spots, turn):
     while True:
-        selected_spot = input("Please pick a spot (1-9): ")
+        selected_spot = input(f"Please pick a spot player {turn} (1-9): ")
         try:
             selected_spot = int(selected_spot)
             if selected_spot in range(1, 10) and (spots[selected_spot] == " "):
