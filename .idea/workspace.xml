@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0b17981-35e1-4373-8300-d0af2e219b63" name="Changes" comment="cleaned and commented">
-      <change afterPath="$PROJECT_DIR$/Projects/Tic Tac Toe/Tic Tac Toe_V2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projects/Tic Tac Toe/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,16 +39,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/katse/PycharmProjects/School-Stuff/Projects/Tic Tac Toe",
+    "last_opened_file_path": "/Users/masonseaquist/Documents/GitHub/School/Projects/Tic Tac Toe",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Projects/Tic Tac Toe" />
       <recent name="C:\Users\katse\PycharmProjects\School-Stuff\Projects\Tic Tac Toe" />
     </key>
   </component>
@@ -85,6 +87,10 @@
       <option name="presentableId" value="Default" />
       <updated>1675715082316</updated>
       <workItem from="1679353695864" duration="10766000" />
+      <workItem from="1679405397003" duration="464000" />
+      <workItem from="1679406096953" duration="2818000" />
+      <workItem from="1679422643500" duration="2155000" />
+      <workItem from="1679434536031" duration="3037000" />
     </task>
     <task id="LOCAL-00001" summary="finished ttt">
       <created>1679358422206</created>
@@ -119,8 +125,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="cleaned and commented" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/School_Stuff$Tic_Tac_Toe_V2.coverage" NAME="Tic Tac Toe_V2 Coverage Results" MODIFIED="1679365882242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
     <SUITE FILE_PATH="coverage/School_Stuff$Tic_Tac_Toe.coverage" NAME="Tic Tac Toe Coverage Results" MODIFIED="1679363725160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
+    <SUITE FILE_PATH="coverage/School_Stuff$Tic_Tac_Toe_V2.coverage" NAME="Tic Tac Toe_V2 Coverage Results" MODIFIED="1679365882242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
+    <SUITE FILE_PATH="coverage/School$Tic_Tac_Toe_V2.coverage" NAME="Tic Tac Toe_V2 Coverage Results" MODIFIED="1679414537132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
+    <SUITE FILE_PATH="coverage/School$test.coverage" NAME="test Coverage Results" MODIFIED="1679438147318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
+    <SUITE FILE_PATH="coverage/School$Tic_Tac_Toe.coverage" NAME="Tic Tac Toe Coverage Results" MODIFIED="1679434821700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
     <SUITE FILE_PATH="coverage/School_Stuff$Test.coverage" NAME="Test Coverage Results" MODIFIED="1679357201024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
+    <SUITE FILE_PATH="coverage/School$Tic_Tac_Toe_V3.coverage" NAME="Tic Tac Toe_V3 Coverage Results" MODIFIED="1679434874456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Projects/Tic Tac Toe" />
   </component>
 </project>
