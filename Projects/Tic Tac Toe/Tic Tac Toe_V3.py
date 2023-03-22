@@ -28,12 +28,13 @@ def check_win(spots, turn):
     for combo in win_combos:
         if (spots[int(combo[0])] + spots[int(combo[1])] + spots[int(combo[2])]) == (turn * 3):
             print(f"{turn} Wins!!!")
+            draw_board(spots)
             # Set the game state to not running
             global game_on
             game_on = False
             break  # Exit the function to prevent further checks
 
-    if all(value != " " for value in spots.values()):
+    if all(value != "-" for value in spots.values()):
         # If all spots are filled and no one has won, it's a tie
         print(f"It's a Tie!!!")
         game_on = False
@@ -49,59 +50,80 @@ def mark(spots, turn):
         selected_spot = input(f"Please pick a spot player {turn} (1-9): ")
         try:
             selected_spot = int(selected_spot)
-            if selected_spot in range(1, 10) and (spots[selected_spot] == " "):
+            if selected_spot in range(1, 10) and (spots[selected_spot] == "-"):
                 spots[selected_spot] = turn
                 break
             else:
                 print("Please enter a number between 1 and 9.")
         except ValueError:
             print("Please enter a valid number.")
-    draw_board(spots)
+
 
 
 # Function for AI to mark a spot on the board
 def ai_mark(spots):
     # list of winning combinations
-    winning_combinations = [('1', '2', '3'), ('4', '5', '6'), ('7', '8', '9'),
-                            ('1', '4', '7'), ('2', '5', '8'), ('3', '6', '9'),
-                            ('1', '5', '9'), ('3', '5', '7')]
+    win_combos = ("123", "456", "789", "159", "357", "147", "258", "369")
 
     # loop through the empty positions
-    for position in [key for key in spots.keys() if spots[key] == ' ']:
+    for position in [key for key in spots.keys() if spots[key] == '-']:
         # simulate placing an 'X' in the empty position
+        print(spots)
         spots[position] = 'O'
+        print(spots)
         # loop through the winning combinations
-        for combo in winning_combinations:
+        for combo in win_combos:
+            """print(spots[int(combo[0])])
+            print(spots[int(combo[1])])
+            print(spots[int(combo[2])])
+            print("")"""
             # check if all three positions in the combination are the same and equal to 'X'
-            if spots[combo[0]] != spots[combo[1]] != spots[combo[2]] != 'O':
-                spots[position] = ' '
-            else:
-                break
-    for position in [key for key in spots.keys() if spots[key] == ' ']:
+            if spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'O':
+
+                spots[position] = "O"
+                print("works_win")
+                draw_board(spots)
+                return
+            elif not spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'O':
+                spots[position] = '-'
+
+    for position in [key for key in spots.keys() if spots[key] == '-']:
         # simulate placing an 'X' in the empty position
         spots[position] = 'X'
         # loop through the winning combinations
-        for combo in winning_combinations:
+        for combo in win_combos:
+
             # check if all three positions in the combination are the same and equal to 'X'
-            if spots[combo[0]] != spots[combo[1]] != spots[combo[2]] != 'X':
-                spots[position] = ' '
+            if spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'X':
+                """print(spots[int(combo[0])])
+                print(spots[int(combo[1])])
+                print(spots[int(combo[2])])"""
+                print("works_block")
+                spots[position] = 'O'
+                draw_board(spots)
+                return
             else:
-                spots[position] = "O"
-                break
+                spots[position] = '-'
+    while True:
+        selected_spot1 = random.randint(1, 9)
+        if spots[selected_spot1] == "-":
+            spots[selected_spot1] = "O"
+            draw_board(spots)
+            break
+    draw_board(spots)
 
 
 
     # draw_board(spots)
-spots = {1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
-ai_mark(spots)
+
 
 # Define a function to play the game
 def main():
     # Initialize the spots on the board to blank
-    spots = {1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
+    spots = {1: "-", 2: "-", 3: "-", 4: "-", 5: "-", 6: "-", 7: "-", 8: "-", 9: "-"}
 
     # Initialize turn count to zero
-    turn_count = 0
+    turn_count = 1
 
     # Draw the initial game board
     draw_board(spots)
@@ -162,4 +184,4 @@ def main():
                 # Increment the turn counter
                 turn_count += 1
 # Start Game
-# main()
+main()
