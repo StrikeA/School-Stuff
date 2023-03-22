@@ -91,12 +91,14 @@ def ai_mark(spots):
                 draw_board(spots)
                 return
         spots[position] = '-'
-    while True:
-        selected_spot1 = random.randint(1, 9)
-        if spots[selected_spot1] == "-":
-            spots[selected_spot1] = "O"
-            draw_board(spots)
-            break
+    for key in spots.keys() if spots[key] == "-":
+        
+    # while True:
+    #     selected_spot1 = random.randint(1, 9)
+    #     if spots[selected_spot1] == "-":
+    #         spots[selected_spot1] = "O"
+    #         draw_board(spots)
+    #         break
 
 
 # Define a function to play the game
