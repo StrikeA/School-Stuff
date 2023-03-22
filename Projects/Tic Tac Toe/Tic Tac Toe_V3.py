@@ -68,15 +68,13 @@ def ai_mark(spots):
     # loop through the empty positions
     for position in [key for key in spots.keys() if spots[key] == '-']:
         # simulate placing an 'X' in the empty position
-        print(spots)
         spots[position] = 'O'
-        print(spots)
         # loop through the winning combinations
         for combo in win_combos:
-            """print(spots[int(combo[0])])
+            print(spots[int(combo[0])])
             print(spots[int(combo[1])])
             print(spots[int(combo[2])])
-            print("")"""
+            print("")
             # check if all three positions in the combination are the same and equal to 'X'
             if spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'O':
 
@@ -111,10 +109,6 @@ def ai_mark(spots):
             draw_board(spots)
             break
     draw_board(spots)
-
-
-
-    # draw_board(spots)
 
 
 # Define a function to play the game
