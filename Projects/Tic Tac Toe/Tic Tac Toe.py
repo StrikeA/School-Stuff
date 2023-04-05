@@ -67,7 +67,12 @@ def main():
 
         # Increment the turn counter
         turn_count += 1
+    again = input("Do you want to play again (y or n)? ")
+    play_again(again)
 
+def play_again(again):
+    if again == "y":
+        main()
 
 # Start the game
 main()
