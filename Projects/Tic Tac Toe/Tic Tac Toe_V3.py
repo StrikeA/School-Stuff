@@ -86,7 +86,6 @@ def ai_mark(spots):
 
             # check if all three positions in the combination are the same and equal to 'X'
             if spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'X':
-                print("works_block")
                 spots[position] = 'O'
                 draw_board(spots)
                 return

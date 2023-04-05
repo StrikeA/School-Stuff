@@ -32,7 +32,7 @@ def check_win(spots, turn):
             # Set the game state to not running
             global game_on
             game_on = False
-            break  # Exit the function to prevent further checks
+            return
 
     if all(value != "-" for value in spots.values()):
         # If all spots are filled and no one has won, it's a tie
@@ -86,19 +86,35 @@ def ai_mark(spots):
 
             # check if all three positions in the combination are the same and equal to 'X'
             if spots[int(combo[0])] == spots[int(combo[1])] == spots[int(combo[2])] == 'X':
-                print("works_block")
                 spots[position] = 'O'
                 draw_board(spots)
                 return
         spots[position] = '-'
-    for key in spots.keys() if spots[key] == "-":
-        
-    # while True:
-    #     selected_spot1 = random.randint(1, 9)
-    #     if spots[selected_spot1] == "-":
-    #         spots[selected_spot1] = "O"
-    #         draw_board(spots)
-    #         break
+    if spots[5] == "-":
+        spots[5] == "O"
+        draw_board(spots)
+    corners = (1, 3, 5, 7)
+    corners_avail = []
+    sides = (2, 4, 6, 8)
+    sides_avail = []
+    for corner in corners:
+        if spots[corner] == "-":
+            corners_avail.append(corner)
+    for side in sides:
+        if spots[side] == "-":
+            sides_avail.append(side)
+    if len(corners_avail) != 0:
+        selected = random.choice(corners_avail)
+        spots[selected] = "O"
+        draw_board(spots)
+    else:
+        selected = random.choice(sides_avail)
+        spots[selected] = "O"
+        draw_board(spots)
+    for item in corners_avail:
+        corners_avail.pop()
+    for item in sides_avail:
+        sides_avail.pop()
 
 
 # Define a function to play the game
