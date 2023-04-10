@@ -87,8 +87,7 @@ class TicTacToe:
         else:
             while self.win == False:
                 self.player_mark()
-        self.play_again()
-    def play_again(self):
+
         if input("Would you like to play again (y or n)? ") == "y":
             self.run()
 
