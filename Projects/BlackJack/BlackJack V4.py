@@ -73,21 +73,23 @@ class BlackJack:
             except ValueError:
                 print("Please enter a valid number.")
         
-
     def deal(self):
-        for i in range(2):
-            while True:
-                card = random.choice(self.deck.deck)
-                if not card.dealt:
-                    card.dealt = True
-                    self.player_hand.add_card(card)
-                    break
-            while True:
-                card = random.choice(self.deck.deck)
-                if not card.dealt:
-                    card.dealt = True
-                    self.dealer_hand.add_card(card)
-                    break
+        card_value = random.choice(range(2, 11))
+        card_rank = str(card_value) if card_value <= 10 else {11: 'Ace', 12: 'Jack', 13: 'Queen', 14: 'King'}[card_value]
+        suit = random.choice(["Hearts", "Diamonds", "Spades", "Clubs"])
+        card1 = Card(card_rank, suit, card_value)
+        card2 = Card(card_rank, random.choice([s for s in ["Hearts", "Diamonds", "Spades", "Clubs"] if s != suit]), card_value)
+        card1.dealt = True
+        card2.dealt = True
+        self.player_hand.add_card(card1)
+        self.player_hand.add_card(card2)
+        while True:
+            card = random.choice(self.deck.deck)
+            if not card.dealt and card.value != card_value:
+                card.dealt = True
+                self.dealer_hand.add_card(card)
+                break
+
     
     def hit(self, hand):
         while True:
@@ -110,7 +112,7 @@ class BlackJack:
         self.has_split = True
         self.player_hand2.add_card(self.player_hand.hand.pop())
         self.player_hand.score -= self.player_hand2.score
-        self.player_hand.current_bet = self.player_hand2.current_bet
+        self.player_hand2.current_bet = self.player_hand.current_bet
         self.balance -= self.player_hand2.current_bet
         self.hit(self.player_hand)
         self.hit(self.player_hand2)
@@ -118,6 +120,13 @@ class BlackJack:
         self.dealer_turn(self.player_hand)
         self.check_win(self.player_hand)
         self.dealer_hand.reset()
+        for i in range(2):
+            while True:
+                card = random.choice(self.deck.deck)
+                if not card.dealt:
+                    card.dealt = True
+                    self.dealer_hand.add_card(card)
+                    break
         self.player_turn(self.player_hand2)
         self.dealer_turn(self.player_hand2)
         self.check_win(self.player_hand2)
